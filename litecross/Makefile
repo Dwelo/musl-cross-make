@@ -44,7 +44,7 @@ GCC_CONFIG_FOR_TARGET += --with-float=soft
 endif
 
 ifneq ($(filter %hf,$(TARGET)),)
-GCC_CONFIG_FOR_TARGET += --with-float=hard
+GCC_CONFIG_FOR_TARGET += --with-float=hard --with-fpu=vfpv3-d16
 endif
 
 ifneq ($(LIBTOOL),)
@@ -249,10 +249,10 @@ install-musl: | obj_musl/.lc_built
 	cd obj_musl && $(MAKE) $(MUSL_VARS) DESTDIR=$(DESTDIR)$(OUTPUT)$(SYSROOT) install
 
 install-binutils: | obj_binutils/.lc_built
-	cd obj_binutils && $(MAKE) MAKE="$(MAKE) $(LIBTOOL_ARG)" DESTDIR=$(DESTDIR)$(OUTPUT) install
+	cd obj_binutils && $(MAKE) MAKE="$(MAKE) $(LIBTOOL_ARG)" DESTDIR=$(DESTDIR)$(OUTPUT) install-strip
 
 install-gcc: | obj_gcc/.lc_built
-	cd obj_gcc && $(MAKE) MAKE="$(MAKE) $(LIBTOOL_ARG)" DESTDIR=$(DESTDIR)$(OUTPUT) install
+	cd obj_gcc && $(MAKE) MAKE="$(MAKE) $(LIBTOOL_ARG)" DESTDIR=$(DESTDIR)$(OUTPUT) install-strip
 	ln -sf $(TARGET)-gcc $(DESTDIR)$(OUTPUT)/bin/$(TARGET)-cc
 
 ifneq ($(LINUX_SRCDIR),)

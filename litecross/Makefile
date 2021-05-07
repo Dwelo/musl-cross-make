@@ -44,7 +44,7 @@ GCC_CONFIG_FOR_TARGET += --with-float=soft
 endif
 
 ifneq ($(filter %hf,$(TARGET)),)
-GCC_CONFIG_FOR_TARGET += --with-float=hard
+GCC_CONFIG_FOR_TARGET += --with-float=hard --with-fpu=vfpv3-d16
 endif
 
 ifneq ($(LIBTOOL),)

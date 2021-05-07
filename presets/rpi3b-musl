@@ -10,8 +10,3 @@ GCC_CONFIG += --disable-multilib --disable-libssp --disable-libmpx
 GCC_CONFIG += --enable-default-pie --enable-default-ssp
 
 GCC_CONFIG += --with-arch=armv7-a --with-tune=generic-armv7-a --with-mode=thumb
-
-# not sure if this if is necessary, but I'm keeping it to be safe
-ifneq ($(filter %hf,$(TARGET)),)
-GCC_CONFIG += --with-fpu=vfpv3-d16
-endif
